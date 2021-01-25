@@ -1,0 +1,133 @@
+{{-- <option value="CASABLANCA">CASABLANCA</option>
+                                  <option value="RABAT">RABAT</option>
+                                  <option value="MARRAKECH">MARRAKECH</option>
+                                  <option value="BENI MELLAL">BENI MELLAL</option>
+                                  <option value="TANGER">TANGER</option>
+                                  <option value="EL JADIDA">EL JADIDA</option> --}}
+
+
+
+{{-- ajouter des input fields
+
+
+<!-- <div class="container1">
+                                    <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
+                                <div>
+                                    <input type="text" name="mytext[]"></div>
+                                </div> -->
+
+
+
+javascript:
+
+<!--adding input fields-->
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        var max_fields      = 4;
+        var wrapper         = $(".container1");
+        var add_button      = $(".add_form_field");
+
+        var x = 1;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){
+                x++;
+                $(wrapper).append('<div><input type="text" name="ville_etp'+$(x)+'"/><a href="#" class="delete">Delete</a></div>'); //add input box
+            }
+      else
+      {
+      alert('You Reached the limits')
+      }
+        });
+
+        $(wrapper).on("click",".delete", function(e){
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+    });
+</script>                               
+
+}}
+
+
+ {{-- <div class="col-md-8">
+                        <div class="form-box">
+                            Type Vehicule:<br><br>
+
+                            <label class="container1"><img src="{{ URL::asset('img/car_ico.png') }}" alt="Awesome Image"/>
+                              <input type="radio" checked="checked" name="vehicule" value="1">
+                              <span class="checkmark"></span>
+                            </label>
+                            <label class="container1"><img src="{{ URL::asset('img/sumo_ico.png') }}" alt="Awesome Image"/>
+                              <input type="radio" name="vehicule" value="2">
+                              <span class="checkmark"></span>
+                            </label>
+                            <label class="container1"><img src="{{ URL::asset('img/truck_ico.png') }}" alt="Awesome Image"/>
+                              <input type="radio" name="vehicule" value="3">
+                              <span class="checkmark"></span>
+                            </label>
+
+{{-- <div class="container22">
+        <button class="add_form_field">Add New Field &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span>
+        </button>
+        <div>
+            <input type="text" name="ville_etp">
+        </div>
+    </div> --}}
+
+couleurs du site
+
+#ED492E orange
+
+
+
+
+
+<!--adding input fields-->
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+        var max_fields = 3;
+        var wrapper = $(".container22");
+        var add_button = $(".add_form_field");
+        var x = 0;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){
+                x++;
+                $(wrapper).append('<div><input type="text" name="ville_etp'+x+'"/><a href="#" class="delete">Delete</a></div>'); //add input box
+            }
+      else
+      {
+      alert('You Reached the limits')
+      }
+        });
+
+        $(wrapper).on("click",".delete", function(e){
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+        return x;
+    });
+</script>
+
+
+
+                                  <div class="overlay" style="position: relative; margin-left: 50px;top: -22px;">
+                                    <?php $conducteur=App\Conducteur::find(Session::get('id_c')) ?>
+                                                @if($conducteur->rating==0)
+                                                    <i class="fa fa-star" style="color: grey;"></i>
+                                                    <i class="fa fa-star" style="color: grey;"></i>
+                                                    <i class="fa fa-star" style="color: grey;"></i>
+                                                    <i class="fa fa-star" style="color: grey;"></i>
+                                                    <i class="fa fa-star" style="color: grey;"></i>
+                                                @else
+                                                    @while($conducteur->rating>0)
+                                                        @if($conducteur->rating >0.5)
+                                                            <i class="fa fa-star" style="color: orange;"></i>
+                                                        @else
+                                                            <i class="fa fa-star" style="color: grey;"></i>
+                                                        @endif
+                                                        @php $conducteur->rating--; @endphp
+                                                    @endwhile
+                                                @endif
+                                    </div>
